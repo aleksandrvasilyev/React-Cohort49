@@ -1,19 +1,15 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import allCategories from "./fake-data/all-categories";
-import allProducts from "./fake-data/all-products";
+import categories from "./fake-data/all-categories";
+import products from "./fake-data/all-products";
 import CategoryList from "./components/CategoryList";
 import ProductList from "./components/ProductList";
 
 function App() {
-  const [categories, setCategories] = useState(allCategories);
-  const [products, setProducts] = useState(allProducts);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   let filteredProducts;
-  
+
   if (selectedCategory) {
     filteredProducts = products.filter(
       (product) => product.category === selectedCategory.slice(6)
@@ -25,7 +21,11 @@ function App() {
   return (
     <>
       <h1>Products</h1>
-      <CategoryList categories={categories} setCategory={setSelectedCategory} />
+      <CategoryList 
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
       <ProductList products={filteredProducts} />
     </>
   );

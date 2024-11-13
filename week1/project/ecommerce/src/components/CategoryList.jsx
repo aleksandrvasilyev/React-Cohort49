@@ -1,11 +1,16 @@
 import { useState } from "react";
 
-const CategoryList = ({ categories, setCategory }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
+const CategoryList = ({
+  categories,
+  selectedCategory,
+  setSelectedCategory,
+}) => {
   const handleClick = (category) => {
-    setSelectedCategory(category);
-    setCategory(category);
+    if (category === selectedCategory) {
+      setSelectedCategory(null);
+    } else {
+      setSelectedCategory(category);
+    }
   };
 
   return (
@@ -24,4 +29,5 @@ const CategoryList = ({ categories, setCategory }) => {
     </ul>
   );
 };
+
 export default CategoryList;
