@@ -64,7 +64,6 @@ function App() {
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
-        loading={loading}
         error={error}
       />
       <ProductList products={products} loading={loading} error={error} />

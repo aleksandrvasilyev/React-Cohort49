@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 const Product = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`https://fakestoreapi.com/products/${id}`);
 
         if (!response.ok) {
@@ -18,18 +20,24 @@ const Product = () => {
         setProduct(data);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProduct();
   }, [id]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Product not found!</div>;
   }
 
   return (
