@@ -8,7 +8,7 @@ import useFetch from "../hooks/useFetch";
 const ProductPage = () => {
   const { id } = useParams();
 
-  const { favorites, handleFavorite } = useFavorite();
+  const { favorites, toggleFavorite } = useFavorite();
 
   const {
     data: product,
@@ -47,7 +47,7 @@ const ProductPage = () => {
                   src={
                     favorites.includes(product.id) ? heartSolid : heartRegular
                   }
-                  onClick={(e) => handleFavorite(e, product.id)}
+                  onClick={(e) => toggleFavorite(e, product.id)}
                 />
               </div>
             </div>

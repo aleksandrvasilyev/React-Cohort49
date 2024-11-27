@@ -4,7 +4,7 @@ import heartSolid from "../assets/heart-solid.svg";
 import { useFavorite } from "../context/FavoriteContext";
 
 const ProductItem = ({ product }) => {
-  const { favorites, handleFavorite } = useFavorite();
+  const { isFavorite, toggleFavorite } = useFavorite();
 
   return (
     <li className="products__item">
@@ -15,8 +15,8 @@ const ProductItem = ({ product }) => {
             <div className="product_image__favourite_container">
               <img
                 className="product_image__favourite"
-                src={favorites.includes(product.id) ? heartSolid : heartRegular}
-                onClick={(e) => handleFavorite(e, product.id)}
+                src={isFavorite(product.id) ? heartSolid : heartRegular}
+                onClick={(e) => toggleFavorite(e, product.id)}
               />
             </div>
           </div>

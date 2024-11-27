@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 const useFetch = (initialUrl = null) => {
   const [data, setData] = useState([]);
@@ -42,15 +42,10 @@ const useFetch = (initialUrl = null) => {
     }
   };
 
-  const memoizedUrls = useMemo(() => {
-    return initialUrl;
-  }, [JSON.stringify(initialUrl)]);
-
   useEffect(() => {
-    if (memoizedUrls) {
-      fetchData(memoizedUrls);
-    }
-  }, [memoizedUrls]);
+    fetchData(initialUrl);
+  }, [initialUrl]);
+
   return { data, error, loading };
 };
 
